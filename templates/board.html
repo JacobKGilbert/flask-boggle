@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
-{% block board %}
+{% block content %}
 
+<table>
 
+  {% for y in session['board']%}
+  <tr>
+    {% for x in y %}
+    <td>{{x}}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+
+</table>
 
 {% endblock %}
