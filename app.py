@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request
 from boggle import Boggle
 
 app = Flask(__name__)
@@ -17,3 +17,11 @@ def board():
   init_board()
 
   return render_template('board.html')
+
+@app.route('/guess', methods=['POST'])
+def guess():
+  req = request.get_json()
+  guess = req['guess']
+
+  res = boggle_game.check_valid_word(session['board'], guess)
+  return res
