@@ -2,6 +2,20 @@
 
 {% block content %}
 
+<p><span id="timer">60</span> Seconds</p>
+
+<form method="post" id="guess-form">
+  <label for="guess-input">Guess</label>
+  <input type="text" name="guess-input" id="guess-input">
+  <button type="submit">Submit</button>
+</form>
+
+<p>Your Score: <span id="score"></span></p>
+
+<p id="result"></p>
+
+<a href="/board" class="start-game">Start New Game</a>
+
 <table>
 
   {% for y in session['board']%}
