@@ -1,5 +1,6 @@
 let score = 0
 
+/** Controls timer and calls endgame route once complete. */
 setInterval(async function () {
   let timer = $('#timer')
   let time = parseInt($(timer).text())
@@ -19,6 +20,7 @@ setInterval(async function () {
   $(timer).text(time)
 }, 1000)
 
+/** Checks res.data for showing whether the word guessed was correct. */
 function renderAnswerCorrectiveness(res, guess) {
   if (res.data === 'ok') {
     score += guess.length
@@ -33,6 +35,7 @@ function renderAnswerCorrectiveness(res, guess) {
   }
 }
 
+/** Takes form submission and passes it to backend for verification. */
 $('#guess-form').submit(async function (evt) {
   evt.preventDefault()
 
