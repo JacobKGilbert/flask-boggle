@@ -14,7 +14,8 @@ class FlaskTests(TestCase):
             html = res.get_data(as_text=True)
 
             self.assertEqual(res.status_code, 200)
-            self.assertIn('<h1>Boggle Game Home</h1>', html)
+            self.assertIn(
+                '<a href="/board" class="start-game">Start New Game</a>', html)
 
     def test_init_board(self):
         with app.test_client() as client:
@@ -29,4 +30,11 @@ class FlaskTests(TestCase):
             html = res.get_data(as_text=True)
 
             self.assertEqual(res.status_code, 200)
-            self.assertIn('test', html)
+            self.assertIn('<p id="result"></p>', html)
+
+    def test_guess_route(self):
+        with app.test_client() as client:
+            client.get('/board')
+            res = client.post('/guess', json={'guess': 'hello'})
+
+            self.assertEqual(res.status_code, 200)
