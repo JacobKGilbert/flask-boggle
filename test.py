@@ -38,3 +38,10 @@ class FlaskTests(TestCase):
             res = client.post('/guess', json={'guess': 'hello'})
 
             self.assertEqual(res.status_code, 200)
+
+    # def test_endgame_route(self):
+    #     with app.test_client() as client:
+    #         client.get('/board')
+    #         res = client.post('/endgame', json={'score': 20})
+
+    #         self.assertEqual(session['high_score'], 20)
